@@ -16,12 +16,7 @@ class Lion(Optimizer):
         super().__init__(params, defaults)
 
     @torch.no_grad()
-    def step(self, closure=None):
-        loss = None
-        if closure is not None:
-            with torch.enable_grad():
-                loss = closure()
-
+    def step(self):
         for group in self.param_groups:
             for p in group['params']:
                 if p.grad is None:
@@ -44,8 +39,6 @@ class Lion(Optimizer):
                 if wd != 0:
                     update.add_(p, alpha=wd)
                 p.add_(update, alpha=-lr)
-
-        return loss
 
 
 def process_data():
