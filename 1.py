@@ -34,5 +34,5 @@ x2 = torch.randn(16, 3, 64, 64)
 custom_out2 = custom_norm2(x2)
 out2 = norm2(x2)
 
-assert torch.allclose(out1, custom_out1, atol=1e-6)
-assert torch.allclose(out2, custom_out2, atol=1e-6)
+assert torch.allclose(out1, custom_out1, atol=1e-6), '1D outputs mismatch'
+assert torch.allclose(out2, custom_out2, atol=1e-6), '2D outputs mismatch'
